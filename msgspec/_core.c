@@ -12682,7 +12682,7 @@ mpack_decode_dataclass(
             PathNode field_path = {path, PATH_STR, field};
             PyObject *val = mpack_decode(self, field_type, &field_path, false);
             if (val == NULL) goto error;
-            int status = PyObject_SetAttr(out, field, val);
+            int status = PyObject_GenericSetAttr(out, field, val);
             Py_DECREF(val);
             if (status < 0) goto error;
         }
@@ -15286,7 +15286,7 @@ json_decode_dataclass(
             PathNode field_path = {path, PATH_STR, field};
             PyObject *val = json_decode(self, field_type, &field_path);
             if (val == NULL) goto error;
-            int status = PyObject_SetAttr(out, field, val);
+            int status = PyObject_GenericSetAttr(out, field, val);
             Py_DECREF(val);
             if (status < 0) goto error;
         }
@@ -18036,7 +18036,7 @@ from_builtins_dataclass(
             PathNode field_path = {path, PATH_STR, field};
             PyObject *val = from_builtins(self, val_obj, field_type, &field_path);
             if (val == NULL) goto error;
-            int status = PyObject_SetAttr(out, field, val);
+            int status = PyObject_GenericSetAttr(out, field, val);
             Py_DECREF(val);
             if (status < 0) goto error;
         }
